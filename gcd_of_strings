@@ -1,0 +1,23 @@
+class Solution {
+public:
+    string gcdOfStrings(string str1, string str2) {
+        if((str1 + str2)==(str2+str1)){
+        int l1=str1.length();
+        int l2=str2.length();
+        int g=gcd(l1,l2);
+        return str1.substr(0,g);
+        }
+        else{
+            return "";
+        }
+        
+    }
+    int gcd(int l1,int l2){
+        while(l2%l1!=0){
+            int r=l2%l1;
+            l2=l1;
+            l1=r;
+        }
+        return l1;
+    }
+};
