@@ -1,0 +1,23 @@
+class Solution {
+public:
+    int compress(vector<char>& chars) {
+       string ans;
+       for(int i=0;i<chars.size();){
+           char c=chars[i];
+           int count=1;
+           while(i+1<chars.size() && c==chars[i+1]){
+               i++;
+               count++;
+           }
+           ans+=c;
+           if(count>1){
+               ans+=to_string(count);
+           }
+           i++;
+       }
+       for(int i=0;i<ans.size();i++){
+           chars[i]=ans[i];
+       }
+       return ans.size();
+    }
+};
