@@ -1,0 +1,24 @@
+class Solution {
+public:
+    void solver(vector<vector<int>>& graph,vector<int> inner,vector<vector<int>>& outer,int src,int destination){
+        inner.push_back(src);
+        if(src==destination)
+            {
+                outer.push_back(inner);
+                 return;
+            }
+        for(auto it:graph[src]){
+            solver(graph,inner,outer,it,destination);
+        }
+    }
+
+    vector<vector<int>> allPathsSourceTarget(vector<vector<int>>& graph) {
+        vector<int>inner;
+        vector<vector<int>>outer;
+        int n=graph.size();
+        if(n==0)
+            return outer;
+        solver(graph,inner,outer,0,n-1);
+        return outer;
+    }
+};
