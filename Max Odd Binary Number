@@ -1,0 +1,24 @@
+class Solution {
+public:
+    string maximumOddBinaryNumber(string s) {
+        int zero=0,one=0;
+        for(int i=0;i<s.length();i++){
+            if(s[i]=='0')
+                zero++;
+            else
+                one++;
+        }
+        int i=1,j=1;
+        string ans="";
+        while(i<one){
+            ans+='1';
+            i++;
+        }
+        while(j<=zero){
+            ans+='0';
+            j++;
+        }
+        ans+='1';
+        return ans;
+    }
+};
