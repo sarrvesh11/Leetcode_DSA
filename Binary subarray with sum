@@ -1,0 +1,17 @@
+class Solution {
+public:
+    int numSubarraysWithSum(vector<int>& nums, int goal) {
+        unordered_map<int ,int>mp;
+        mp[0]=1;
+        int count=0;
+        int currsum=0;
+        for(auto it:nums){
+            currsum+=it;
+            if(mp.find(currsum-goal)!=mp.end()){
+                count+=mp[currsum-goal];
+            }
+            mp[currsum]++;
+        }
+        return count;
+    }
+};
