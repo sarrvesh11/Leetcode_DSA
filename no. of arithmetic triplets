@@ -1,0 +1,16 @@
+class Solution {
+public:
+    int arithmeticTriplets(vector<int>& nums, int diff) {
+     unordered_map<int ,int>mp;
+     for(auto i:nums){
+        mp[i]++;
+     }   
+     int count=0;
+     for(int j=0;j<nums.size();j++){
+        if(mp[nums[j]+diff] && mp[nums[j]+diff+diff]){
+            count++;
+        }
+     }
+     return count;
+    }
+};
