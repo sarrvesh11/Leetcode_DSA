@@ -1,0 +1,44 @@
+class Solution {
+public:
+    int firstindex(vector<int>&nums,int target){
+        int ans=-1;
+        int low=0,high=nums.size()-1;
+
+        while(low<=high){
+            int mid=(low+high)/2;
+            if(target>nums[mid]){
+                low=mid+1;
+            }else if(target<nums[mid]){
+                high=mid-1;
+            }else{
+                ans=mid;
+                high=mid-1;
+            }
+        }
+        return ans;
+    }
+
+int lastindex(vector<int>&nums,int target){
+        int li=-1;
+        int low=0,high=nums.size()-1;
+
+        while(low<=high){
+            int mid=(low+high)/2;
+            if(target>nums[mid]){
+                low=mid+1;
+            }else if(target<nums[mid]){
+                high=mid-1;
+            }else{
+                li=mid;
+                low=mid+1;
+            }
+        }
+        return li;
+    }
+    vector<int> searchRange(vector<int>& nums, int target) {
+        vector<int>fans;
+        fans.push_back(firstindex(nums,target));
+        fans.push_back(lastindex(nums,target));
+        return fans;
+    }
+};
