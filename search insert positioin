@@ -1,0 +1,18 @@
+class Solution {
+public:
+    int searchInsert(vector<int>& nums, int target) {
+        int lo=0,high=nums.size()-1;
+        int mid;
+        while(lo<=high){
+            mid=(lo+high)/2;
+            if(nums[mid]==target)
+                return mid;
+            if(nums[mid]>target){
+                high=mid-1;
+            }else{
+                lo=mid+1;
+            }
+        }
+        return lo;
+    }
+};
