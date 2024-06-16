@@ -1,0 +1,20 @@
+class Solution {
+    public int minSubArrayLen(int target, int[] nums) {
+        int i=0,j=0;
+        int sum=0;
+        int size=Integer.MAX_VALUE;
+
+        for(i=0;i<nums.length;i++){
+            sum+=nums[i];
+            while(sum>=target){
+                size=Math.min(i-j+1,size);
+                sum-=nums[j];
+                j++;
+            }
+        }
+        if(size==Integer.MAX_VALUE){
+            return 0;
+        }
+        return size;
+    }
+}
