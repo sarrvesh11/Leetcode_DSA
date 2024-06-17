@@ -1,0 +1,24 @@
+class Solution {
+    public boolean canConstruct(String ransomNote, String magazine) {
+        if(ransomNote.length()>magazine.length())
+            return false;
+        HashMap<Character,Integer>map=new HashMap<>();
+        for(char c:ransomNote.toCharArray()){
+            map.put(c,map.getOrDefault(c,0)+1);
+        }
+        int mapsize=map.size();
+        for(char i:magazine.toCharArray()){
+            if(map.containsKey(i))
+                {
+                    map.put(i,map.get(i)-1);
+                    if(map.get(i)==0){
+                        map.remove(i);
+                        mapsize--;
+                    }
+                    if(mapsize==0)
+                        return true;
+                }
+        }
+        return false;
+    }
+}
