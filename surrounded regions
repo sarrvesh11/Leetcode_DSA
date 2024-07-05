@@ -1,0 +1,33 @@
+class Solution {
+    public void drawtreeforComponents(char[][] arr,int i,int j,boolean[][]visited){
+        if(i<0 || j<0 || i>=arr.length || j>=arr[0].length || arr[i][j]=='X' || visited[i][j]==true)
+                return;
+        visited[i][j]=true;
+        drawtreeforComponents(arr,i+1,j,visited);
+        drawtreeforComponents(arr,i-1,j,visited);
+        drawtreeforComponents(arr,i,j+1,visited);
+        drawtreeforComponents(arr,i,j-1,visited);
+    }
+    public void solve(char[][] arr) {
+        boolean[][]visited=new boolean[arr.length][arr[0].length];
+        for(int j=0;j<arr[0].length;j++){
+            if(arr[0][j]=='O' && !visited[0][j])
+           drawtreeforComponents(arr,0,j,visited);
+           if(arr[arr.length-1][j]=='O' && !visited[arr.length-1][j])
+            drawtreeforComponents(arr,arr.length-1,j,visited);
+        }
+        for(int i=0;i<arr.length;i++){
+            if(arr[i][0]=='O' && !visited[i][0])
+           drawtreeforComponents(arr,i,0,visited);
+           if(arr[i][arr[0].length-1]=='O' && !visited[i][arr[0].length-1])
+            drawtreeforComponents(arr,i,arr[0].length-1,visited);
+        }
+        for(int i=0;i<arr.length;i++){
+            for(int j=0;j<arr[0].length;j++){
+                if(arr[i][j]=='O' && !visited[i][j])
+                    arr[i][j]='X';
+            }
+        }
+    }
+    
+}
