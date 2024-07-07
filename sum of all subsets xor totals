@@ -1,0 +1,12 @@
+class Solution {
+    public int subsetXORSum(int[] nums) {
+      return  bcktrck(nums,0,0);
+    }
+    public int bcktrck(int []nums,int i,int currans){
+        if(i==nums.length)
+            return currans;
+        int include=bcktrck(nums,i+1,currans ^ nums[i]);
+        int exclude=bcktrck(nums,i+1,currans);
+        return include+exclude;
+    }
+}
