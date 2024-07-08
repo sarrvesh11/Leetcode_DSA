@@ -1,0 +1,16 @@
+class Solution {
+    public int countMaxOrSubsets(int[] nums) {
+        int maxor=0;
+        for(int i=0;i<nums.length;i++){
+            maxor=maxor | nums[i];
+        }
+        return solve(nums,0,0,maxor);
+    }
+    public int solve(int[] nums,int index,int curror,int maxor){
+        if(index==nums.length)
+            return curror==maxor ? 1:0;
+        int include=solve(nums,index+1,curror | nums[index],maxor);
+        int exclude=solve(nums,index+1,curror,maxor);
+        return include+exclude;
+    }
+}
