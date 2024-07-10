@@ -1,0 +1,27 @@
+class Solution {
+    int count=0;
+    public int totalNQueens(int n) {
+        int[] rows=new int[n];
+        int[] ndiag=new int[2*n-1];
+        int[] rdiag=new int[2*n-1];
+        solve(0,rows,ndiag,rdiag,n);
+        return count;
+    }
+    public void solve(int col,int[] rows,int[] ndiag,int[] rdiag,int n){
+        if(col==n){
+            count++;
+            return;
+        }
+        for(int row=0;row<n;row++){
+            if(rows[row]==0 && ndiag[row+col]==0 && rdiag[col-row+n-1]==0){
+                rows[row]=1;
+                ndiag[col+row]=1;
+                rdiag[col-row+n-1]=1;
+                solve(col+1,rows,ndiag,rdiag,n);
+                rows[row]=0;
+                ndiag[col+row]=0;
+                rdiag[col-row+n-1]=0;
+            }
+        }
+    }
+}
