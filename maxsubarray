@@ -1,0 +1,20 @@
+
+class Solution {
+    public static int longestSubarray(int n, int[] arr) {
+        int xor=0;
+        int maxlen=0;
+        HashMap<Integer,Integer>mp=new HashMap<>();
+        mp.put(0,-1);
+        for(int i=0;i<n;i++){
+            xor^=arr[i];
+            if(mp.containsKey(xor)){
+                int len=i-mp.get(xor);
+                maxlen=Math.max(len,maxlen);
+            }
+            else{
+                mp.put(xor,i);
+            }
+        }
+        return maxlen;
+    }
+}
