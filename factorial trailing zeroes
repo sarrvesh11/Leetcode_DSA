@@ -1,0 +1,11 @@
+class Solution {
+    public int trailingZeroes(int n) {
+        int div=5;
+        int sum=0;
+        while(div<=n){
+            sum+=n/div;
+            div*=5;
+        }
+        return sum;
+    }
+}
