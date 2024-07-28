@@ -1,0 +1,11 @@
+class Solution {
+    public int longestSubarray(int[] nums) {
+        int i = 0, j;
+        int K=1;
+        for (j = 0; j < nums.length; ++j) {
+            if (nums[j] == 0) K--;
+            if (K < 0 && nums[i++] == 0) K++;
+        }
+        return j - i-1;
+    }
+}
