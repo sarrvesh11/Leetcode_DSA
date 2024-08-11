@@ -1,0 +1,40 @@
+class trie{
+    trie[] child;
+    List<String>words;
+    trie(){
+        words=new ArrayList();
+        child=new trie[26];
+    }
+}
+class Solution {
+    public List<List<String>> suggestedProducts(String[] products, String searchWord) {
+        Arrays.sort(products);
+
+        trie root=new trie();
+        for(String prod:products){
+            trie n=root;
+            for(char ch:prod.toCharArray()){
+                int i=ch-'a';
+                if(n.child[i]==null){
+                    n.child[i]=new trie();
+                }
+                n=n.child[i];
+                if(n.words.size()<3)
+                    n.words.add(prod);
+            }
+        }
+        List<List<String>>ans=new ArrayList<>();
+        trie n=root;
+
+        for(int i=0;i<searchWord.length();i++){
+            n=n.child[searchWord.charAt(i)-'a'];
+            if(n==null){
+                for(int j=i;j<searchWord.length();j++)
+                    ans.add(Collections.EMPTY_LIST);
+                break;
+            }
+            ans.add(n.words);
+        }
+        return ans;
+    }
+}
